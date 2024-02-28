@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 
 function Rating(props) {
   const rating = props.arr.map( num => <span key={num} className='w-10 h-10 bg-gray-600 rounded-3xl flex justify-evenly items-center cursor-pointer' onClick={() => props.handleClick(num)}><p>{num}</p></span> )
@@ -11,7 +12,7 @@ function Rating(props) {
             <div className='flex justify-around pt-4  text-slate-400'>
               {rating}
             </div>
-            <button className='py-2 px-4 mt-4 bg-orange-500 rounded-full w-full text-white' onClick={props.handleSubmit}>SUBMIT</button>
+            <Link to="/thanks"><button className='py-2 px-4 mt-4 bg-orange-500 rounded-full w-full text-white'>SUBMIT</button></Link>
         </div>
     </div>
   )

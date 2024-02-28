@@ -2,31 +2,32 @@ import React from 'react'
 import { useState } from 'react'
 import Rating from "./components/Rating";
 import './App.css'
+import ThanksCard from './components/ThanksCard';
+import {Routes,Route} from "react-router-dom"
 
 function App() {
-  const [selectedRating,SetSelectedRating] = React.useState();
-  const [ratingSubmit, SetRatingSubmit ] = React.useState(false);
+  const [selectedRating,SetSelectedRating] = useState();
+  const [doneRating, setDoneRating] = useState(false);
   const arr = [1,2,3,4,5]
 
   const handleClick = (num)=> {
     SetSelectedRating(num)
-  }
-  const handleSubmit = ()=> {
-    SetRatingSubmit(!ratingSubmit)
+    setDoneRating(!doneRating)
   }
  
+ 
   console.log(selectedRating)
-  console.log(ratingSubmit)
 
   return (
     <>
-      <Rating 
-          arr={arr}
-          selectedRating={selectedRating}
-          handleClick={handleClick}
-          handleSubmit={handleSubmit}
-          />
-          
+     <Routes>
+     <Route path="/" element={<Rating 
+      arr={arr}
+      handleClick={handleClick}
+      doneRating={doneRating}
+      />} />
+     {doneRating && <Route path="/thanks" element={<ThanksCard  selectedRating={selectedRating}/>} /> }
+     </Routes>
     </>
   )
 }
