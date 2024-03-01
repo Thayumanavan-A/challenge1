@@ -8,16 +8,20 @@ import {Routes,Route} from "react-router-dom"
 function App() {
   const [selectedRating,SetSelectedRating] = useState();
   const [doneRating, setDoneRating] = useState(false);
-  const arr = [1,2,3,4,5]
+  const [arr,setArr] = useState([{num:1,selected:false},{num:2,selected:false},{num:3,selected:false},{num:4,selected:false},{num:5,selected:false}])
 
   const handleClick = (num)=> {
+
     SetSelectedRating(num)
     setDoneRating(!doneRating)
+    setArr(prevArr => {
+      return prevArr.map((obj) => {
+        return obj.num === num ? {...obj,selected:!obj.selected} : obj
+      })
+    })
   }
  
- 
-  console.log(selectedRating)
-
+console.log(arr)
   return (
     <>
      <Routes>
